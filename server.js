@@ -13,6 +13,7 @@ function fasong(state,obj){
 
     })
 }
+//不知道
 var clientLength=1;
 wss.on("connection",function(ws){
     var user;
