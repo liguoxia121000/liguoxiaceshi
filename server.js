@@ -13,6 +13,8 @@ function fasong(state,obj){
 
     })
 }
+//11111
+//22222
 //不知道
 var clientLength=1;
 wss.on("connection",function(ws){
