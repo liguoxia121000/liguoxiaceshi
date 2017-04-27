@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #duihuakuang{
+            border:1px solid lightpink;
+            height: 500px;
+            width: 520px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="duihuakuang"></div>
+    姓名：<input type="text" id="name" placeholder="请输入姓名">
+    内容：<input type="text" id="neirong" placeholder="请输入内容">
+    <a href="javascript:void (0)" onclick="fasong()">发送</a>
+    <a href="javascript:void (0)" onclick="tuichu()">退出</a>
+</body>
+<script language="JavaScript" src="./js/jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
+    var ws=new WebSocket("ws://localhost:4567");
+    ws.onopen=function(){// 握手成功之后走的方法   在connection之后
+        $("#duihuakuang").html("当前连接状态readyState是:"+ws.readyState);
+    };
+    ws.onmessage=function(res){//接后台用send发送的数据
+        $("#duihuakuang").append("<br>"+res.data);
+    };
+    ws.onclose=function(){//接后台用send发送的数据
+       window.location.reload();
+    };
+    function fasong(){
+        var name=$("#name").val();
+        var neirong=$("#neirong").val();
+        var str="{name:'"+name+"',neirong:'"+neirong+"'}";
+        ws.send(str);//发送给后台数据
+    };
+    function tuichu(){
+        ws.close();
+    }
+</script>
+</html>
