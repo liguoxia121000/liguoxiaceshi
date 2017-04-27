@@ -14,8 +14,7 @@ function fasong(state,obj){
     })
 }
 //11111
-//22222
-//不知道
+//66666
 var clientLength=1;
 wss.on("connection",function(ws){
     var user;
